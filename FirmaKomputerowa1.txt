@@ -1,0 +1,64 @@
+USE Ada
+
+DROP DATABASE FirmaKomputerowa
+CREATE DATABASE FirmaKomputerowa
+
+USE FirmaKomputerowa
+
+
+CREATE TABLE Produkty 
+(
+Model nvarchar(30) PRIMARY KEY NOT NULL,
+Producent nvarchar(30) NOT NULL,
+Typ nvarchar(30) NOT NULL
+)
+GO 
+
+CREATE TABLE PC
+(
+Model nvarchar(30) PRIMARY KEY NOT NULL,
+Procesor int NOT NULL,
+Ram int NOT NULL,
+hdd int NOT NULL,
+cd int NOT NULL,
+Ekran int NOT NULL,
+Cena money NULL
+)
+GO
+
+CREATE TABLE Laptop
+(
+Model nvarchar(30) PRIMARY KEY NOT NULL,
+Procesor int NOT NULL,
+Ram int NOT NULL,
+hdd int NOT NULL,
+cd nvarchar(30) NOT NULL,
+Ekran int NOT NULL,
+Cena money NULL
+)
+GO
+
+CREATE TABLE Drukarki
+(
+Model nvarchar(30) PRIMARY KEY NOT NULL,
+Kolor bit NOT NULL,
+Typ nvarchar(30) NOT NULL,
+Cena money NULL
+) 
+GO
+
+
+ALTER TABLE PC
+ADD CONSTRAINT ZamianaKlucza1
+FOREIGN KEY (Model)
+REFERENCES Produkty(Model)
+
+ALTER TABLE Laptop
+ADD CONSTRAINT ZamianaKlucza2
+FOREIGN KEY (Model)
+REFERENCES Produkty(Model)
+
+ALTER TABLE Drukarki
+ADD CONSTRAINT ZamianaKlucza3
+FOREIGN KEY (Model)
+REFERENCES Produkty(Model)
